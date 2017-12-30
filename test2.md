@@ -31,7 +31,7 @@ You can specify column alignment with one or two colons:
 
 ## MathJax
 
-You can render *LaTeX* mathematical expressions using **MathJax**, as on [math.stackexchange.com][1]:
+You can render *LaTeX* mathematical expressions using **MathJax**
 
 The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
 
