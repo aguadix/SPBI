@@ -9,7 +9,7 @@ Hey! I'm your first Markdown document in **StackEdit**[^stackedit]. Don't delete
 
 
 
-### Tables
+# Tables
 
 **Markdown Extra** has a special syntax for tables:
 
@@ -30,7 +30,7 @@ You can specify column alignment with one or two colons:
 
 
 
-### MathJax
+## MathJax
 
 You can render *LaTeX* mathematical expressions using **MathJax**, as on [math.stackexchange.com][1]:
 
