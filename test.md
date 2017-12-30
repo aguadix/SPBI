@@ -1,6 +1,6 @@
 What is Markdown?
 -----------------
----------------------
+
 
 
 [GitHub with MathJax](https://chrome.google.com/webstore/detail/github-with-mathjax/ioemnmodlmafdkllaclgeombjnmnbima)
