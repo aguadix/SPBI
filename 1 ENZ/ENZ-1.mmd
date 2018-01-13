@@ -1,0 +1,31 @@
+; ENZ-1.mmd
+; Reactor enzimático discontinuo
+
+
+; EQUATIONS
+
+; Differential
+S' = - Vmax*S/(KM+S) ; Michaelis-Menten  
+;S' = - Vmax*S/(KM*(1+I/KI)+S) ; competitiva  
+;S' = - Vmax*S/(KM+S*(1+I/KI)) ; acompetitiva  
+;S' = - Vmax*S/((KM+S) *(1+I/KI)) ; no competitiva
+;S' = - Vmax*S/(KM+S+S^2/KI) ; sustrato
+;S' = - Vmax*S/(KM+S+P/KI) ; producto
+P' = -S'
+
+
+; PARAMETERS
+
+; Constants
+KM = 4.5 ;mmol/L
+Vmax = 0.5 ;mmol/(L*min)
+I = 0.5 ;mmol/L
+KI = 0.25 ;mmol/L
+
+; Initial conditions
+INIT S = 1; mmol/L 
+INIT P = 0; mmol/L
+
+; Integration
+STOPTIME = 20 ;min
+DT = 0.01 ;min
