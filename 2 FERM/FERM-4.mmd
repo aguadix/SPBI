@@ -1,0 +1,37 @@
+; FERM-4.mmd
+; Fermentador semicontinuo
+
+
+; EQUATIONS
+
+; Differential
+V' = F
+VX' = rX*V
+VS' = F*S0 + rS*V
+
+; Algebraic
+rX = U*X; g/(L*h)
+rS = -rX/Y; g/(L*h)
+U = UM*S/(KS+S+S^2/KI); 1/h  
+X = VX/V; g/L
+S = VS/V; g/L
+
+
+; PARAMETERS
+
+; Constants
+F = 0.05; L/h
+S0 = 5; g/L   
+UM = 0.8; 1/h
+KS = 0.1; g/L
+KI = 10; g/L
+Y = 0.5; ad   
+
+; Initial conditions
+INIT V = 0.5; L
+INIT VX = 0.01; g
+INIT VS = 0.5; g  
+
+; Integration
+STOPTIME = 10 ;h
+DT = 0.01 ;h
