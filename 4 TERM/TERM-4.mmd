@@ -1,0 +1,60 @@
+; TERM-4.mmd
+; Tratamiento continuo
+
+
+; EQUATIONS
+
+; Differential
+T'[1] = F*(T0-T[i])/V + U*A*(TC-T[i])/(V*RHO*CP)
+T'[2..N] = F*(T[i-1]-T[i])/V + U*A*(TC-T[i])/(V*RHO*CP)
+M'[1] = F*(M0-M[i])/V - km[i]*M[i]
+M'[2..N] = F*(M[i-1]-M[i])/V - km[i]*M[i]
+
+; Algebraic
+A = PI*D*L; dm2
+V = PI*D^2/4*L; L
+km[1..N] = logn(10)/Dm[i]; s-1
+Dm[1..N] = D1211m*10^((121.1-T[i])/Zm); s
+TN = T[N]; ºC
+ORDENm = log10(M0/(M[N])); ad
+
+
+; PARAMETERS
+
+; Constants
+M0 = 1E8; UFC/dm3
+L = 1; dm
+F = 0.1; dm3/s
+T0 = 25; ºC
+D = 0.5; dm
+U = 50; J/(s*m2*K)
+TC = 120; ºC
+RHO = 1000; g/dm3
+CP = 4.18; J/(ºC*g)
+
+
+MICROORGANISM = 1
+
+D1211m = IF MICROORGANISM = 1 {B. stearothermophillus} THEN 175; s
+    ELSE IF MICROORGANISM = 2 {B. subtilis}            THEN  35 
+    ELSE IF MICROORGANISM = 3 {B. megaterium}          THEN   2.4 
+    ELSE IF MICROORGANISM = 4 {C. sporogenes}          THEN  75 
+    ELSE IF MICROORGANISM = 5 {C. botulinum}           THEN  12 ELSE 0
+
+Zm =     IF MICROORGANISM = 1 {B. stearothermophillus} THEN   8; ºC
+    ELSE IF MICROORGANISM = 2 {B. subtilis}            THEN  10 
+    ELSE IF MICROORGANISM = 3 {B. megaterium}          THEN   7 
+    ELSE IF MICROORGANISM = 4 {C. sporogenes}          THEN  13 
+    ELSE IF MICROORGANISM = 5 {C. botulinum}           THEN  10 ELSE 0
+
+
+; Initial conditions
+INIT T[1..N] = 25; ºC
+INIT M[1..N] = 1E8; UFC/dm3
+
+; Integration
+STOPTIME = 1000; s
+DT = 0.01; s
+
+; Índices
+N = 40
