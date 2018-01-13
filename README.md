@@ -1,5 +1,5 @@
 # SPBI
-Simulación de Procesos Biotecnológicos Industriales (Máster en Biotecnología)
+Simulación de Procesos Biotecnológicos Industriales
 
 [Máster en Biotecnología](http://masteres.ugr.es/biotecnologia)
 
