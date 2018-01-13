@@ -1,0 +1,45 @@
+; SEP-2.mmd
+; Ultrafiltracion
+
+
+; EQUATIONS
+
+; Differential
+VR' = Q - P
+VRCAR' = -P*CAP
+VRCBR' = -P*CBP
+VF' = P
+VFCAF' = P*CAP
+VFCBF' = P*CBP
+
+; Algebraic
+CAR = VRCAR/VR; g/L
+CBR = VRCBR/VR; g/L
+CAP = CAR*TA; g/L
+CBP = CBR*TB; g/L
+CAF = VFCAF/VF; g/L
+CBF = VFCBF/VF; g/L
+Q = IF TIME<TIMEC 
+	THEN 0 ; concentración 
+	ELSE P ; diafiltración  ; L/h
+
+
+; PARAMETERS
+
+; Constants
+P = 0.1; L/h
+TA = 1; ad
+TB = 0; ad
+TIMEC = 5; h
+
+; Initial conditions
+INIT VR = 1; L
+INIT VF = 1E-10; L
+INIT VRCAR = 1; g
+INIT VRCBR = 1; g
+INIT VFCAF = 0; g
+INIT VFCBF = 0; g
+
+; Integration
+STOPTIME = 10; h
+DT = 0.01; h
