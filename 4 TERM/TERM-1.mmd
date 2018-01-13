@@ -1,0 +1,62 @@
+; TERM-1.mmd
+; Tratamiento discontinuo isotermo
+
+
+; EQUATIONS
+
+; Differential
+M' = -km*M
+V' = -kv*V
+
+; Algebraic
+km = logn(10)/Dm; s-1
+Dm = D1211m*10^((121.1-T)/Zm); s
+ORDENm = log10(INIT(M)/M); ad
+kv = logn(10)/Dv; s-1
+Dv = D1211v*10^((121.1-T)/Zv); s
+FRACv = V/INIT(V); ad
+
+
+; PARAMETERS
+
+; Constants
+T = 120; ºC
+
+
+MICROORGANISM = 1
+
+D1211m = IF MICROORGANISM = 1 {B. stearothermophillus} THEN 175; s
+    ELSE IF MICROORGANISM = 2 {B. subtilis}            THEN  35 
+    ELSE IF MICROORGANISM = 3 {B. megaterium}          THEN   2.4 
+    ELSE IF MICROORGANISM = 4 {C. sporogenes}          THEN  75 
+    ELSE IF MICROORGANISM = 5 {C. botulinum}           THEN  12 ELSE 0
+
+Zm =     IF MICROORGANISM = 1 {B. stearothermophillus} THEN   8; ºC
+    ELSE IF MICROORGANISM = 2 {B. subtilis}            THEN  10 
+    ELSE IF MICROORGANISM = 3 {B. megaterium}          THEN   7 
+    ELSE IF MICROORGANISM = 4 {C. sporogenes}          THEN  13 
+    ELSE IF MICROORGANISM = 5 {C. botulinum}           THEN  10 ELSE 0
+
+
+VITAMIN = 1
+
+D1211v = IF VITAMIN = 1 {VITAMIN A}   THEN   2400; s
+    ELSE IF VITAMIN = 2 {VITAMIN B1}  THEN    400 
+    ELSE IF VITAMIN = 3 {VITAMIN B5}  THEN 138000 
+    ELSE IF VITAMIN = 4 {VITAMIN B6}  THEN  24000 
+    ELSE IF VITAMIN = 5 {VITAMIN C}   THEN  50000 ELSE 0
+
+Zv =     IF VITAMIN = 1 {VITAMIN A}   THEN     23; ºC
+    ELSE IF VITAMIN = 2 {VITAMIN B1}  THEN     25 
+    ELSE IF VITAMIN = 3 {VITAMIN B5}  THEN     35.8 
+    ELSE IF VITAMIN = 4 {VITAMIN B6}  THEN     45 
+    ELSE IF VITAMIN = 5 {VITAMIN C}   THEN     18.2 ELSE 0
+
+
+; Initial conditions
+INIT M = 1E5; UFC/mL
+INIT V = 1; mg/L
+
+; Integration
+STOPTIME = 1000; s
+DT = 0.01; s
