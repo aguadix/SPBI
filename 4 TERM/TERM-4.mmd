@@ -39,13 +39,15 @@ D1211m = IF MICROORGANISM = 1 {B. stearothermophillus} THEN 175; s
     ELSE IF MICROORGANISM = 2 {B. subtilis}            THEN  35 
     ELSE IF MICROORGANISM = 3 {B. megaterium}          THEN   2.4 
     ELSE IF MICROORGANISM = 4 {C. sporogenes}          THEN  75 
-    ELSE IF MICROORGANISM = 5 {C. botulinum}           THEN  12 ELSE 0
+    ELSE IF MICROORGANISM = 5 {C. botulinum}           THEN  12 
+    ELSE 0
 
 Zm =     IF MICROORGANISM = 1 {B. stearothermophillus} THEN   8; ºC
     ELSE IF MICROORGANISM = 2 {B. subtilis}            THEN  10 
     ELSE IF MICROORGANISM = 3 {B. megaterium}          THEN   7 
     ELSE IF MICROORGANISM = 4 {C. sporogenes}          THEN  13 
-    ELSE IF MICROORGANISM = 5 {C. botulinum}           THEN  10 ELSE 0
+    ELSE IF MICROORGANISM = 5 {C. botulinum}           THEN  10 
+    ELSE 0
 
 
 ; Initial conditions
