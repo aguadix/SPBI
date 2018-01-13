@@ -1,0 +1,33 @@
+; ENZ-3.mmd
+; Reactor enzimático continuo con enzima confinada
+
+
+; EQUATIONS
+
+; Differential
+S' = F*(S0-S)/V + rS
+E' = F*E0/V - kd*E
+
+; Algebraic
+rS = -Vmax*S/(KM+S) ;mmol/(L*h)
+Vmax = k3*E ;mmol/(L*h)
+
+
+; PARAMETERS
+
+; Constants
+V = 10 ;L
+F = 1 ;L/h
+S0 = 10 ;mmol/L
+E0 = 1 ;mmol/L
+KM = 0.5 ;mmol/L
+k3 = 0.5 ;h-1
+kd = 0.1 ;h-1
+
+; Initial conditions
+INIT S = 10 ;mmol/L 
+INIT E = 1 ;mmol/L
+
+; Integration
+STOPTIME = 200 ;h
+DT = 0.01 ;h
