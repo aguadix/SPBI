@@ -1,0 +1,35 @@
+; FERM-1.mmd
+; Fermentador discontinuo
+
+
+; EQUATIONS
+
+; Differential
+X' = rX
+S' = rS
+P' = rP
+
+; Algebraic
+rX = U*X; g/(L*h)
+U = UM*S/(KS+S); 1/h
+rS = -rX/Y; g/(L*h)
+rP = (k1+k2*U)*X; g/(L*h)
+
+
+; PARAMETERS
+
+; Constants
+UM = 0.3; 1/h
+KS = 0.1; g/L 
+k1 = 0.03; 1/h
+k2 = 0.08; ad
+Y = 0.8; ad
+
+; Initial conditions
+INIT X = 0.01; g/L
+INIT S = 10; g/L
+INIT P = 0; g/L
+
+; Integration
+STOPTIME = 40 ;h
+DT = 0.01 ;h
