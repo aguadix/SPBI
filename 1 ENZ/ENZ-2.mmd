@@ -1,0 +1,33 @@
+; ENZ-2.mmd
+; Reactor enzimático discontinuo con desactivación
+
+
+; EQUATIONS
+
+; Differential
+S' = -kh*E
+E' = -kd*E^2
+T' = UA*(TC-T)/(RHO*CP*V)
+
+; Algebraic
+kh = exp(25 - 7600/T) ;1/h
+kd = exp(30 - 9300/T) + exp(110 - 36300/T) ;L/(h*g)
+
+
+; PARAMETERS
+
+; Constants
+RHO = 1000 ; g/L
+CP = 1 ; cal/(g*K)
+V = 10 ; L
+UA = 1E5; cal/(h*K)
+TC = 360; K
+
+; Initial conditions
+INIT S = 5 ;g/L
+INIT E = 0.25 ;g/L
+INIT T = 290 ;K
+
+; Integration
+STOPTIME = 5 ;h
+DT = 0.01 ;h
