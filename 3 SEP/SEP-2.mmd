@@ -19,9 +19,7 @@ CAP = CAR*TA; g/L
 CBP = CBR*TB; g/L
 CAF = VFCAF/VF; g/L
 CBF = VFCBF/VF; g/L
-Q = IF TIME<TIMEC 
-	THEN 0 ; concentración 
-	ELSE P ; diafiltración  ; L/h
+Q = IF TIME<TIMEC THEN 0 {concentración} ELSE P {diafiltración} ; L/h
 
 
 ; PARAMETERS
