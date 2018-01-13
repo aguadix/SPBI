@@ -1,0 +1,40 @@
+; FERM-5.mmd
+; Fermentador aerobio
+
+
+; EQUATIONS
+
+; Differential
+X' = rX 
+S' = rS   
+O2' = KLa*(O2sat - O2)+ rO2
+
+; Algebraic
+rX = U*X; g/(L*h)
+U = UM*S/(KS+S)*O2/(KO2+O2); 1/h
+rS = -rX/YS; g/(L*h)
+rO2 = rS*YO2; g/(L*h)
+KLA = k * N^3 * G^0.5; 1/h
+
+
+; PARAMETERS
+
+; Constants
+N = 100; rpm
+G = 10; 1/h
+UM = 1; 1/h
+KS = 0.1; mg/L
+YS = 0.5; ad
+k = 1E-5; ---
+KO2 = 5; mg/L
+O2sat = 8; mg/L
+YO2 = 150; ad
+
+; Initial conditions
+INIT X = 2; mg/L
+INIT S = 10; mg/L
+INIT O2 = 1; mg/L
+
+; Integration
+STOPTIME = 8 ;h
+DT = 1E-4 ;h
