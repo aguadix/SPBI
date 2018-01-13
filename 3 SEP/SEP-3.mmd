@@ -1,0 +1,49 @@
+; SEP-3.mmd
+; Cromatografía
+
+
+; EQUATIONS
+
+; Differential
+;e*V*CA1' + (1-e)*V*CAs1' = F*(CA0-CA1)
+;KA = CAs1/CA1
+;e*V*CA1' + (1-e)*V*KA*CA1' = F*(CA0-CA1)
+;CA1'*(e*V+(1-e)*V*KA) = F*(CA0-CA1)
+CA'[1] = F*(CA0-CA[i])/(e*V+(1-e)*V*KA)
+CB'[1] = F*(CB0-CB[i])/(e*V+(1-e)*V*KB)
+CA'[2..N] = F*(CA[i-1]-CA[i])/(e*V+(1-e)*V*KA)
+CB'[2..N] = F*(CB[i-1]-CB[i])/(e*V+(1-e)*V*KB)
+
+; Algebraic
+CA0 = IF TIME < TIMEin THEN CAin ELSE 0; g/cm3
+CB0 = IF TIME < TIMEin THEN CBin ELSE 0; g/cm3
+CAN = CA[N]; g/cm3
+CBN = CB[N]; g/cm3
+CAk = CA[k]; g/cm3
+CBk = CB[k]; g/cm3
+
+
+; PARAMETERS
+
+; Constants
+TIMEin = 10; s
+CAin = 0.25; g/cm3
+CBin = 0.25; g/cm3
+F = 0.4; cm3/s
+e = 0.4; ad
+V = 1; cm3
+KA = 3.0; ad
+KB = 1.5; ad
+
+; Initial conditions
+INIT CA[1..N] = 0; g/cm3
+INIT CB[1..N] = 0; g/cm3
+
+; Integration
+STOPTIME= 1500; s
+DT = 0.1; s
+DTOUT = 5; s
+
+; Indices
+N = 200
+k = 20
