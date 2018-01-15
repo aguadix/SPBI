@@ -1,0 +1,44 @@
+; FERM-6.mmd
+; Fermentador continuo con inhibición por sustrato controlado
+
+
+; EQUATIONS
+
+; Differential
+X' = -D*X+rX
+S' = D*(S0-S)+rS
+Ei' = E
+
+; Algebraic
+rX = U*X; g/(L*h)
+U = UM*S/(KS+S+S^2/KI); 1/h
+rS = -rX/Y; g/(L*h)
+S0 =   IF TIME<TIME1 THEN S01 ELSE S02; g/L
+E = Xset-X; g/L
+D = D0 + Kc*E + Kc/taui*Ei; 1/h
+
+
+; PARAMETERS
+
+; Constants
+UM = 0.53; 1/h
+KS = 0.12; g/L
+KI = 2.2; g/L  
+Y = 0.5; ad
+D0 = 0.25
+S01 = 5; g/L
+S02 = 6; g/L
+Xset =  2.44387; g/L
+Kc = -1
+taui = 10; h
+
+; Initial conditions
+INIT X = 2.44387; g/L
+INIT S = 0.112257; g/L
+INIT Ei = 0; g/L*h
+
+; Integration
+TIME1 = 100; h
+TIME2 = 200; h
+STOPTIME = 500; h
+DT = 0.01; h

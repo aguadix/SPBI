@@ -26,7 +26,6 @@ CBk = CB[k]; g/cm3
 ; PARAMETERS
 
 ; Constants
-TIMEin = 10; s
 CAin = 0.25; g/cm3
 CBin = 0.25; g/cm3
 F = 0.4; cm3/s
@@ -40,6 +39,7 @@ INIT CA[1..N] = 0; g/cm3
 INIT CB[1..N] = 0; g/cm3
 
 ; Integration
+TIMEin = 10; s
 STOPTIME= 1500; s
 DT = 0.1; s
 DTOUT = 5; s
