@@ -5,29 +5,29 @@
 ; EQUATIONS
 
 ; Differential
-X' = (L*(X0-X)-Q) /VL   
-Y' = (G*(Y0-Y)+Q) /VG 
+Cw' = (Fw*(Cw0-Cw)-Q)/Vw   
+Co' = (Fo*(Co0-Co)+Q)/Vo 
 
 ; Algebraic
-Q = KLa*(X-Y/m)*(VL+VG); g/h
+Q = KLa*(Cw-Co/Pow)*(Vw+Vo); g/h
 
 
 ; PARAMETERS
 
 ; Constants
-VL = 10; L
-VG = 10; L
-X0 = 1; g/L
-Y0 = 0; g/L
-L = 1; L/h
-G = 3; L/h
-m = 0.8; ad
+Vw = 10; L
+Vo = 10; L
+Cw0 = 1; g/L
+Co0 = 0; g/L
+Fw = 1; L/h
+Fo = 3; L/h
+Pow = 0.8; ad
 KLa =  2.5; 1/h
 
 ; Initial conditions
-INIT X = 1; g/L
-INIT Y = 0; g/L
+INIT Cw = 1; g/L
+INIT Co = 0; g/L
 
 ; Integration
-STOPTIME = 50 ;h
-DT = 0.01 ;h
+STOPTIME = 50; h
+DT = 0.01; h
