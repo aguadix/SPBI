@@ -1,40 +1,37 @@
 ; FERM-5.mmd
-; Fermentador aerobio
+; Fermentador semicontinuo
 
 
 ; EQUATIONS
 
 ; Differential
-X' = rX 
-S' = rS   
-O2' = KLa*(O2sat - O2)+ rO2
+V' = F
+VX' = rX*V
+VS' = F*S0 + rS*V
 
 ; Algebraic
 rX = U*X; g/(L*h)
-U = UM*S/(KS+S)*O2/(KO2+O2); 1/h
-rS = -rX/YS; g/(L*h)
-rO2 = rS*YO2; g/(L*h)
-KLA = k * N^3 * G^0.5; 1/h
+rS = -rX/Y; g/(L*h)
+U = UM*S/(KS+S+S^2/KI); 1/h  
+X = VX/V; g/L
+S = VS/V; g/L
 
 
 ; PARAMETERS
 
 ; Constants
-N = 100; rpm
-G = 10; 1/h
-UM = 1; 1/h
-KS = 0.1; mg/L
-YS = 0.5; ad
-k = 1E-5; ---
-KO2 = 5; mg/L
-O2sat = 8; mg/L
-YO2 = 150; ad
+F = 0.05; L/h
+S0 = 5; g/L   
+UM = 0.8; 1/h
+KS = 0.1; g/L
+KI = 10; g/L
+Y = 0.5; ad   
 
 ; Initial conditions
-INIT X = 2; mg/L
-INIT S = 10; mg/L
-INIT O2 = 1; mg/L
+INIT V = 0.5; L
+INIT VX = 0.01; g
+INIT VS = 0.5; g  
 
 ; Integration
-STOPTIME = 8 ;h
-DT = 1E-4 ;h
+STOPTIME = 10 ;h
+DT = 0.01 ;h

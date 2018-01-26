@@ -1,37 +1,44 @@
 ; FERM-4.mmd
-; Fermentador semicontinuo
+; Fermentador continuo con inhibición por sustrato controlado
 
 
 ; EQUATIONS
 
 ; Differential
-V' = F
-VX' = rX*V
-VS' = F*S0 + rS*V
+X' = -D*X+rX
+S' = D*(S0-S)+rS
+Ei' = E
 
 ; Algebraic
 rX = U*X; g/(L*h)
+U = UM*S/(KS+S+S^2/KI); 1/h
 rS = -rX/Y; g/(L*h)
-U = UM*S/(KS+S+S^2/KI); 1/h  
-X = VX/V; g/L
-S = VS/V; g/L
+S0 =   IF TIME<TIME1 THEN S01 ELSE S02; g/L
+E = Xset-X; g/L
+D = D0 + Kc*E + Kc/taui*Ei; 1/h
 
 
 ; PARAMETERS
 
 ; Constants
-F = 0.05; L/h
-S0 = 5; g/L   
-UM = 0.8; 1/h
-KS = 0.1; g/L
-KI = 10; g/L
-Y = 0.5; ad   
+UM = 0.53; 1/h
+KS = 0.12; g/L
+KI = 2.2; g/L  
+Y = 0.5; ad
+D0 = 0.25
+S01 = 5; g/L
+S02 = 6; g/L
+Xset =  2.44387; g/L
+Kc = -1
+taui = 10; h
 
 ; Initial conditions
-INIT V = 0.5; L
-INIT VX = 0.01; g
-INIT VS = 0.5; g  
+INIT X = 2.44387; g/L
+INIT S = 0.112257; g/L
+INIT Ei = 0; g/L*h
 
 ; Integration
-STOPTIME = 10 ;h
-DT = 0.01 ;h
+TIME1 = 100; h
+TIME2 = 200; h
+STOPTIME = 500; h
+DT = 0.01; h
